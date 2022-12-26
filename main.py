@@ -42,12 +42,12 @@ def refactor(img):
 
     if fm > 500:
 
-        blr_img =  cv2.medianBlur(img, 3)
+        blr_img = cv2.medianBlur(img, 3)
         morph_kernel = np.ones((3, 3))
         erode_img = cv2.dilate(blr_img, kernel= morph_kernel, iterations=1)
         return erode_img
 
-    return contrast(img)
+    return img
 
 
 def draw_dmtx_data_save(path, path_save):
@@ -62,7 +62,7 @@ def draw_dmtx_data_save(path, path_save):
 
     if len(data):
         with open(f"{path_save}opend.txt", 'a') as p:
-            p.write(f"{path} DATA: {data}")
+            p.write(f"{path} DATA: {data}\n")
         print(path, data)
         img = cv2.flip(img, 0)
         left = data[0].rect.left
